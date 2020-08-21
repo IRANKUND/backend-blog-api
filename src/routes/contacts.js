@@ -3,7 +3,7 @@ import {checkUser} from '../midleware/authoruser';
 import {allContacts, allContactsById ,addcontacts, modifyContact, deleteContact} from '../controller/contactsController';
 import {allUsers, allUsersById, addUsers, modifyUsers, deleteUser} from '../controller/usersController';
 import {allBlogs, addBlog, modifyBlog, allBlogById, deleteBlog} from '../controller/blogcontroller';
-import {allComment, addcomments} from '../controller/commentController';
+import {allComment, addcomments,modifyComment, commentsById, deletecomement} from '../controller/commentController';
 const route= Router();
 
 route.get('/contacts',checkUser, allContacts);
@@ -23,5 +23,8 @@ route.get('/blogs/:id', allBlogById);
 route.delete('/blogs/:id', deleteBlog);
 route.get('/comments', allComment);
 route.post('/comments', addcomments);
+route.put('/comments/:id',modifyComment);
+route.get('/comments/:id',commentsById);
+route.delete('/comments/:id', deletecomement);
 export default route;
 

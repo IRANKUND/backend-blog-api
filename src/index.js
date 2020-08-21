@@ -3,7 +3,6 @@ import createError from 'http-errors';
 require ('dotenv').config();
 import bodyparser, { json } from 'body-parser';
 import route from './routes/contacts.js';
-import Authoroute from './routes/authRoute';
 import rou from './midleware/authoruser'
 import {checkUser} from './midleware/authoruser';
 import jwt from 'jsonwebtoken';
@@ -18,9 +17,16 @@ app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({ extended: true }));
 
 app.use('/', route);
-app.use('/', Authoroute);
+
 app.use('/' , rou);
 
+app.get('/', (req,res )=>{
+   
+            res.json({
+                message: "Welcome",
+                
+            }) 
+});
 
 app.post('/api/use', checkUser , (req,res )=>{
     jwt.verify(req.token, SECRET_KEY, (err, authData) => {

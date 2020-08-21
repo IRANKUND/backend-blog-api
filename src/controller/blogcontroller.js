@@ -1,4 +1,4 @@
-import blog from '../models/blog.json';
+import blog from '../models/blog';
 
 export const allBlogs= (req, res)=>{
     if(blog.length){

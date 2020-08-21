@@ -1,4 +1,4 @@
-import user from '../models/users.json';
+import user from '../models/users';
 
 export const allUsers= (req, res)=>{
     if(user.length){

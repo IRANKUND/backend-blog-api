@@ -1,5 +1,5 @@
-import contact from '../models/contact.json';
-import user from '../models/users.json';
+import contact from '../models/contact';
+import user from '../models/users';
 
 
 
