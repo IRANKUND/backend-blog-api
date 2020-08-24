@@ -1,5 +1,5 @@
 import comment from '../models/comment';
-
+import { v4 as uuidv4 } from 'uuid';
 
 
 export const allComment= (req, res)=>{
@@ -15,7 +15,7 @@ export const allComment= (req, res)=>{
 
 export const addcomments = (req, res ) =>{
     const blo= {
-        id: comment.length + 1,
+        id: uuidv4(),
         blodId: req.body.blodId,
         name: req.body.name,
         email: req.body.email,

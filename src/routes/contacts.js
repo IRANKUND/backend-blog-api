@@ -7,15 +7,15 @@ import {allComment, addcomments,modifyComment, commentsById, deletecomement} fro
 const route= Router();
 
 route.get('/contacts',checkUser, allContacts);
-route.post('/contacts', addcontacts);
-route.get('/contacts/:id', allContactsById);
-route.put('/contacts/:id', modifyContact);
-route.delete('/contacts/:id', deleteContact);
+route.post('/contacts', checkUser,addcontacts);
+route.get('/contacts/:id',checkUser, allContactsById);
+route.put('/contacts/:id', checkUser,modifyContact);
+route.delete('/contacts/:id', checkUser, deleteContact);
 route.get('/users', allUsers);
-route.get('/users/:id', allUsersById);
-route.post('/users', addUsers);
-route.put('/users/:id', modifyUsers);
-route.delete('/users/:id', deleteUser);
+route.get('/users/:id', checkUser, allUsersById);
+route.post('/users', checkUser,addUsers);
+route.put('/users/:id', checkUser, modifyUsers);
+route.delete('/users/:id', checkUser, deleteUser);
 route.get('/blogs', allBlogs);
 route.post('/blogs', addBlog);
 route.put('/blogs/:id', modifyBlog);
