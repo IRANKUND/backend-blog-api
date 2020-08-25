@@ -2,12 +2,13 @@ import express from 'express';
 import jwt from 'jsonwebtoken';
 import {} from 'dotenv/config';
 import {createError} from 'http-errors';
+import { v4 as uuidv4 } from 'uuid';
 
 const {SECRET_KEY} = process.env;
 const app=express();
-app.post('/api/login', (req, res)=>{
+app.post('/login', (req, res)=>{
     const user={
-        id: 1,
+        id: uuidv4(),
         name: "pazz",
         email: "pazzo@gmail.com"
     }

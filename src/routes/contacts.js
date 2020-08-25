@@ -4,6 +4,7 @@ import {allContacts, allContactsById ,addcontacts, modifyContact, deleteContact}
 import {allUsers, allUsersById, addUsers, modifyUsers, deleteUser} from '../controller/usersController';
 import {allBlogs, addBlog, modifyBlog, allBlogById, deleteBlog} from '../controller/blogcontroller';
 import {allComment, addcomments,modifyComment, commentsById, deletecomement} from '../controller/commentController';
+import {login} from '../controller/loginUser';
 const route= Router();
 
 route.get('/contacts',checkUser, allContacts);
@@ -26,5 +27,6 @@ route.post('/comments', addcomments);
 route.put('/comments/:id',modifyComment);
 route.get('/comments/:id',commentsById);
 route.delete('/comments/:id', deletecomement);
+route.post('/api/login', (req, res) => login(req, res));
 export default route;
 

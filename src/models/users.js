@@ -1,17 +1,21 @@
-
+import { v4 as uuidv4 } from 'uuid';
 
 let users=[
     {
-        id: "1",
+     
        username: "Kayihura",
        email: "12pazzo@gmail.com",
-       password: "patrick"
+       password: "patrick",
+       role: "admin"
     },
     {
-        id: "2",
+       
        username: "Irankunda",
        email: "12pazzo@gmail.com",
-       password: "pazzoz"
+       password: "pazzoz",
+       role: 'user'
      }
 ];
+users = users.map((users) => ({ id: uuidv4(), ...users }));
+
 export default users;

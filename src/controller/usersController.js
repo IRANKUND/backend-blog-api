@@ -1,4 +1,5 @@
 import user from '../models/users';
+import { v4 as uuidv4 } from 'uuid';
 
 export const allUsers= (req, res)=>{
     if(user.length){
@@ -27,10 +28,11 @@ export const allUsersById= (req, res)=>{
 
 export const addUsers = (req, res ) =>{
     const users= {
-        id: user.length + 1,
+        id: uuidv4(),
         username:req.body.username,
         email:req.body.email,
-        password:req.body.password
+        password:req.body.password,
+        role: "user"
     };
     user.push(users);
     if(user.length){

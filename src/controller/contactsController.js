@@ -1,5 +1,6 @@
 import contact from '../models/contact';
 import user from '../models/users';
+import { v4 as uuidv4 } from 'uuid';
 
 
 
@@ -32,7 +33,7 @@ export const allContacts= (req, res)=>{
 
 export const addcontacts = (req, res ) =>{
     const conta= {
-        id: contact.length + 1,
+        id: uuidv4(),
         names:req.body.names,
         email:req.body.email,
         phone:req.body.phone,
