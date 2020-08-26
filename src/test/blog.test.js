@@ -46,7 +46,7 @@ describe('Tests to API contact  routes', () => {
 				done();
 			});
 	});
-	it('(200 Success) Delete blogs ', done => {
+	it('(200 Success) Delete blog ', done => {
 		chai.request(server)
 			.delete('/blog/:id')
 			.end((err, res) => {
