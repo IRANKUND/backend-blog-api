@@ -10,7 +10,7 @@ const route= Router();
 route.get('/contacts',checkUser, allContacts);
 route.post('/contacts', checkUser,addcontacts);
 route.get('/contacts/:id',checkUser, allContactsById);
-route.put('/contacts/:id', checkUser,modifyContact);
+route.patch('/contacts/:id', checkUser,modifyContact);
 route.delete('/contacts/:id', checkUser, deleteContact);
 route.get('/users', allUsers);
 route.get('/users/:id', checkUser, allUsersById);

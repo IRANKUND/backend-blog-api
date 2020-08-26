@@ -6,15 +6,25 @@ import route from './routes/contacts.js';
 import rou from './midleware/authoruser'
 import {checkUser} from './midleware/authoruser';
 import jwt from 'jsonwebtoken';
+import mongo from 'mongoose';
+
 
 
 
 const PORT=process.env.PORT || 3000;
 const SECRET_KEY=process.env.SECRET_KEY;
+const DB_CONNECT=process.env.DB_CONNECT;
+
+
 const app= express();
 
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({ extended: true }));
+
+mongo.connect(DB_CONNECT, { useNewUrlParser: true, useUnifiedTopology: true } ,()=>{
+   
+    console.log("connectedd to DB")
+});
 
 app.use('/', route);
 
