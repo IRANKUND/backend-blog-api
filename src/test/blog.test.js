@@ -1,3 +1,4 @@
+
 import chai, {assert} from 'chai';
 import chaiHttp from 'chai-http';
 import server from '../index';
@@ -6,46 +7,48 @@ import { response } from 'express';
 chai.should();
 chai.use(chaiHttp);
 
-describe('Tests to API user routes', () => {
-	it('(200 Success) GET All  /users', done => {
+
+
+describe('Tests to API contact  routes', () => {
+	it('(200 Success) GET All  blogs', done => {
 		chai.request(server)
-			.get('/users')
+			.get('/blog')
 			.end((err, res) => {
 				if (err) done(err);
 				assert.equal(res.status, 200);
 				done();
 			});
 	});
-	it('(200 Success) GET User by id /users/:id', done => {
+	it('(200 Success) GET blogs by id ', done => {
 		chai.request(server)
-			.get('/user/:id')
+			.get('/blog/:id')
 			.end((err, res) => {
 				if (err) done(err);
 				assert.equal(res.status, 200);
 				done();
 			});
 	});
-	it('(200 Success) POST Add users', done => {
+	it('(200 Success) POST Add blogs', done => {
 		chai.request(server)
-			.post('/user')
+			.post('/blog')
 			.end((err, res) => {
 				if (err) done(err);
 				assert.equal(res.status, 200);
 				done();
 			});
 	});
-	it('(200 Success) PUT UPDATE users route', done => {
+	it('(200 Success) PUT UPDATE blogs ', done => {
 		chai.request(server)
-			.put('/user/:id')
+			.put('/blog/:id')
 			.end((err, res) => {
 				if (err) done(err);
 				assert.equal(res.status, 200);
 				done();
 			});
 	});
-	it('(200 Success) Delete users route', done => {
+	it('(200 Success) Delete blogs ', done => {
 		chai.request(server)
-			.delete('/user/:id')
+			.delete('/blog/:id')
 			.end((err, res) => {
 				if (err) done(err);
 				assert.equal(res.status, 200);
@@ -53,13 +56,3 @@ describe('Tests to API user routes', () => {
 			});
 	});
 });
-
-
-
-
-
-
-
-
-
-
