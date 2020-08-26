@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node ./build/index.js",
     "dev": "nodemon --exec babel-node ./src/index.js",
+    "coverage": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
     "test": "nyc --reporter=text --reporter=html mocha ./src/test --require @babel/polyfill --require @babel/register --timeout 10000 --exit",
     "build": "babel ./src -d build"
   },
@@ -30,6 +31,7 @@
     "@babel/register": "^7.10.5",
     "chai": "^4.2.0",
     "chai-http": "^4.3.0",
+    "coveralls": "^3.1.0",
     "mocha": "^8.1.1",
     "nodemon": "^2.0.4",
     "nyc": "^15.1.0"
