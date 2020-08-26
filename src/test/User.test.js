@@ -53,6 +53,25 @@ describe('Tests to API user routes', () => {
 			});
 	});
 
+	it('(200 Success) Delete users route', done => {
+		chai.request(server)
+			.delete('/user/:id')
+			.end((err, res) => {
+				if (err) done(err);
+				assert.equal(res.status, 200);
+				done();
+			});
+	});
+	it('(200 Success) Delete users route', done => {
+		chai.request(server)
+			.delete('/user/:id')
+			.end((err, res) => {
+				if (err) done(err);
+				assert.equal(res.status, 200);
+				done();
+			});
+	});
+
 });
 
 

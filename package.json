@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node ./build/index.js",
     "dev": "nodemon --exec babel-node ./src/index.js",
-    "test": "mocha --require @babel/polyfill --require @babel/register --recursive --exit ./src/test/ ",
+    "test": "nyc --reporter=text --reporter=html mocha ./src/test --require @babel/polyfill --require @babel/register --timeout 10000 --exit",
     "build": "babel ./src -d build"
   },
   "keywords": [],
@@ -31,6 +31,7 @@
     "chai": "^4.2.0",
     "chai-http": "^4.3.0",
     "mocha": "^8.1.1",
-    "nodemon": "^2.0.4"
+    "nodemon": "^2.0.4",
+    "nyc": "^15.1.0"
   }
 }
