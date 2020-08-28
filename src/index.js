@@ -3,15 +3,14 @@ import createError from 'http-errors';
 require ('dotenv').config();
 import bodyparser, { json } from 'body-parser';
 import route from './routes/contacts.js';
-import rou from './midleware/authoruser'
-import {checkUser} from './midleware/authoruser';
+import auth from './midleware/authoruser';
 import jwt from 'jsonwebtoken';
 import mongo from 'mongoose';
 
 
 
 
-const PORT=process.env.PORT || 3000;
+const PORT=process.env.PORT || 4000;
 const SECRET_KEY=process.env.SECRET_KEY;
 const DB_CONNECT=process.env.DB_CONNECT;
 
@@ -27,9 +26,8 @@ mongo.connect(DB_CONNECT, { useNewUrlParser: true, useUnifiedTopology: true } ,(
 });
 
 app.use('/', route);
-
-app.use('/' , rou);
-
+app.use('/', auth);
+ 
 app.get('/', (req,res )=>{
    
             res.json({
@@ -38,20 +36,7 @@ app.get('/', (req,res )=>{
             }) 
 });
 
-app.post('/api/use', checkUser , (req,res )=>{
-    jwt.verify(req.token, SECRET_KEY, (err, authData) => {
-        if(err){
-            res.sendStatus(403);
-        }else{
-            res.json({
-                message: "user created",
-                authData
-            })
-        }
-    });
 
-    
-});
 
 
 

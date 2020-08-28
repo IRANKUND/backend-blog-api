@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for src/models/comment.js</title>
+    <title>Code coverage report for src/models/message.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -19,7 +19,7 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">src/models</a> comment.js</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">src/models</a> message.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
@@ -68,9 +68,11 @@
 <a name='L9'></a><a href='#L9'>9</a>
 <a name='L10'></a><a href='#L10'>10</a>
 <a name='L11'></a><a href='#L11'>11</a>
-<a name='L12'></a><a href='#L12'>12</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L12'></a><a href='#L12'>12</a>
+<a name='L13'></a><a href='#L13'>13</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -81,16 +83,17 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import mongoo from 'mongoose';
 &nbsp;
-const commentSchema= mongoo.Schema({
-   
-       blodId: String,
-       name: String,
-       email: String,
-       content: String
+const meassageSchema= mongoo.Schema({
+    
+    names: String,
+    email: String,
+    phone: String,
+    message: String
+&nbsp;
 });
 &nbsp;
-module.exports = mongoo.model('comment', commentSchema);
-   </pre></td></tr></table></pre>
+module.exports = mongoo.model('message', meassageSchema);
+&nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->

@@ -5,6 +5,7 @@ import mongo from 'mongoose';
 
 
 export const allContacts= (req, res)=>{
+    
     Message.find()
     .exec()
     .then(doc =>{

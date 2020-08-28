@@ -1,39 +1,22 @@
-import express from 'express';
-import jwt from 'jsonwebtoken';
-import {} from 'dotenv/config';
-import {createError} from 'http-errors';
-import { v4 as uuidv4 } from 'uuid';
+const router= require ('express');
+const User=  require ('../models/users');
 
-const {SECRET_KEY} = process.env;
-const app=express();
-app.post('/login', (req, res)=>{
-    const user={
-        id: uuidv4(),
-        name: "pazz",
-        email: "pazzo@gmail.com"
+const route=router();
+
+route.post('/register', async (req ,res)=>{
+    const user=new User({
+        name:req.body.name,
+        email:req.body.email,
+        password:req.body.password,
+        role: "admin"
+    });
+    try{
+        const savedUser= await user.save();
+        res.send(savedUser);
+    }catch(err){
+        res.status(400).send(err);
     }
-    jwt.sign({user},SECRET_KEY , (err, token)=>{
-        res.json({
-            token
-        })
-    } )
-    
-} );
+})
 
-export const checkUser=(req, res, next)=>{
-    const bearerHeader= req.headers['authorization'];
-    if(typeof bearerHeader !== 'undefined' ){
+export default route;
 
-        const bearer =bearerHeader.split(' ');
-
-        const bearerToken=bearer[1];
-
-        req.token=bearerToken;
-
-        next();
-    }else{
-        res.sendStatus('403');
-    }
-
-}
-export default app;

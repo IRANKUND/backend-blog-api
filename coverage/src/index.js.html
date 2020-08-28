@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">82.76% </span>
+                <span class="strong">92.86% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>24/29</span>
+                <span class='fraction'>26/28</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">75% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>3/6</span>
+                <span class='fraction'>3/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">60% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>3/6</span>
+                <span class='fraction'>3/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">82.76% </span>
+                <span class="strong">92.86% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>24/29</span>
+                <span class='fraction'>26/28</span>
             </div>
         
             
@@ -130,19 +130,15 @@
 <a name='L71'></a><a href='#L71'>71</a>
 <a name='L72'></a><a href='#L72'>72</a>
 <a name='L73'></a><a href='#L73'>73</a>
-<a name='L74'></a><a href='#L74'>74</a>
-<a name='L75'></a><a href='#L75'>75</a>
-<a name='L76'></a><a href='#L76'>76</a>
-<a name='L77'></a><a href='#L77'>77</a>
-<a name='L78'></a><a href='#L78'>78</a>
-<a name='L79'></a><a href='#L79'>79</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L74'></a><a href='#L74'>74</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -150,11 +146,10 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
@@ -162,17 +157,12 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -218,23 +208,31 @@ import createError from 'http-errors';
 require ('dotenv').config();
 import bodyparser, { json } from 'body-parser';
 import route from './routes/contacts.js';
-import rou from './midleware/authoruser'
-import {checkUser} from './midleware/authoruser';
+import auth from './midleware/authoruser';
 import jwt from 'jsonwebtoken';
+import mongo from 'mongoose';
 &nbsp;
 &nbsp;
 &nbsp;
-const PORT=process.env.PORT || 3000;
+&nbsp;
+const PORT=process.env.PORT || 4000;
 const SECRET_KEY=process.env.SECRET_KEY;
+const DB_CONNECT=process.env.DB_CONNECT;
+&nbsp;
+&nbsp;
 const app= express();
 &nbsp;
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({ extended: true }));
 &nbsp;
+mongo.connect(DB_CONNECT, { useNewUrlParser: true, useUnifiedTopology: true } ,<span class="fstat-no" title="function not covered" >()=&gt;{</span>
+   
+<span class="cstat-no" title="statement not covered" >    console.</span>log("connectedd to DB")
+});
+&nbsp;
 app.use('/', route);
-&nbsp;
-app.use('/' , rou);
-&nbsp;
+app.use('/', auth);
+ 
 app.get('/', <span class="fstat-no" title="function not covered" >(r</span>eq,res )=&gt;{
    
 <span class="cstat-no" title="statement not covered" >            res.</span>json({
@@ -243,20 +241,7 @@ app.get('/', <span class="fstat-no" title="function not covered" >(r</span>eq,re
             }) 
 });
 &nbsp;
-app.post('/api/use', checkUser , <span class="fstat-no" title="function not covered" >(r</span>eq,res )=&gt;{
-<span class="cstat-no" title="statement not covered" >    jwt.v</span>erify(req.token, SECRET_KEY, <span class="fstat-no" title="function not covered" >(e</span>rr, authData) =&gt; {
-<span class="cstat-no" title="statement not covered" >        if(err){</span>
-<span class="cstat-no" title="statement not covered" >            res.</span>sendStatus(403);
-        }else{
-<span class="cstat-no" title="statement not covered" >            res.</span>json({
-                message: "user created",
-                authData
-            })
-        }
-    });
 &nbsp;
-    
-});
 &nbsp;
 &nbsp;
 &nbsp;
@@ -298,7 +283,7 @@ export default app;</pre></td></tr></table></pre>
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Wed Aug 26 2020 15:53:51 GMT+0200 (Central Africa Time)
+                at Fri Aug 28 2020 10:14:44 GMT+0200 (Central Africa Time)
             </div>
         </div>
         <script src="../prettify.js"></script>

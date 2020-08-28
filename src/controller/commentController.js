@@ -1,92 +1,85 @@
-import comment from '../models/comment';
-import { v4 as uuidv4 } from 'uuid';
+import Comment from '../models/comment';
+import Blog from '../models/blog';
 
 
 export const allComment= (req, res)=>{
-    if(comment.length){
-        res.json({
-            coount: comment.length,
-            comment
+    Comment.find()
+    .exec()
+    .then(doc =>{
+        console.log(doc);
+        res.status(200).json(doc);
+    }).catch(err =>{
+        res.status(500).json({
+            error: err
         })
-    }else{
-        res.send('error')
-    }
+    })
 }
 
 export const addcomments = (req, res ) =>{
-    const blo= {
-        id: uuidv4(),
-        blodId: req.body.blodId,
-        name: req.body.name,
-        email: req.body.email,
-        content: req.body.content
-    };
-    comment.push(blo);
-    if(comment.length){
-        res.json({
-            coount: comment.length,
-            comment
-        })
-    }else{
-        res.send('error')
-    }
+    
+            const comment= new Comment({
+                blodId: req.body.blodId,
+                name: req.body.name,
+                email: req.body.email,
+                content: req.body.content
+            })
+            comment.save().then(result =>{
+                console.log(result);
+                res.json({
+                    result
+                })
+            }).catch(err => {
+                console.log(err);
+            })
+      
 }
 
 export const modifyComment = (req, res ) =>{
     const id=req.params.id;
-    const comments = comment.find((comments)=>{
-        return comments.id === id;
-    })
-    if(!comments) res.status(400).send("message not found");
-
-    comments.blodId= req.body.blodId,
-    comments.name= req.body.name,
-    comments.email= req.body.email,
-    comments.content= req.body.content
-    
-
-
-    if(comments.length){
-        res.json({
-            coount: comment.length,
-            comment
-        })
-    }else{
-        res.send('error')
+    const updateOps={};
+    for(const ops of req.body){
+        updateOps[ops.propName] = ops.value;
     }
+    Comment.update({_id: id}, {$set: updateOps})
+    .exec()
+    .then(result =>{
+        console.log(result);
+        res.status(200).json(result);
+    }).catch(err =>{
+        console.log(err);
+        res.status(500).json({
+            error: err
+        })
+    })
 }
 
 export const commentsById= (req, res)=>{
     const id=req.params.id;
-    const comments = comment.find((comments)=>{
-        return comments.id === id;
+    Comment.findById(id).exec().then(doc =>{
+        console.log('data from database',doc);
+        if(doc){
+            res.status(200).json(doc);
+        }else{
+            res.status(404).json({message: 'No valid entry found for provided id'});
+        }
+        
+    }).catch(err => {
+        console.log(err);
+        res.status(500).json({error: err});
     })
-    if(comments){
-        res.json({
-            comments
-        })
-    }else{
-        res.send('error')
-    }
 }
 
 
 export const deletecomement= (req, res)=>{
     const id=req.params.id;
-    const comments = comment.find((comments)=>{
-        return comments.id === id;
-    })
-    if(!comments) res.status(400).send("message not found");
-    const index=comment.indexOf(contac);
-    comment.splice(index, 1);
-
-    if(comments){
-        res.json({
-            comments
+    Comment.remove({_id: id}).exec().then(result =>{
+        res.status(200).json(result);
+    }).catch(err =>{
+        console.log(err);
+        res.status(500).json({
+            error: err
         })
-    }else{
-        res.send('error')
-    }
+    })
 }
 
 
