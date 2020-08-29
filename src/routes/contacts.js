@@ -27,6 +27,6 @@ route.post('/comments', addcomments);
 route.patch('/comments/:id',modifyComment);
 route.get('/comments/:id',commentsById);
 route.delete('/comments/:id', deletecomement);
-route.post('/api/login', (req, res) => login(req, res));
+
 export default route;
 
