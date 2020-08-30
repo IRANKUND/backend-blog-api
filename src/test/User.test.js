@@ -36,7 +36,7 @@ describe('Tests to API user routes', () => {
 	});
 	it('(200 Success) PUT UPDATE users route', done => {
 		chai.request(server)
-			.put('/user/:id')
+			.put('/users/:id')
 			.end((err, res) => {
 				if (err) done(err);
 				assert.equal(res.status, 200);

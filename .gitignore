@@ -2,3 +2,6 @@
 /build
 .env
 /src/test/dist
+/coverage
+/.nyc_output
+

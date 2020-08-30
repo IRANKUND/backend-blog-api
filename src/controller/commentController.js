@@ -16,21 +16,27 @@ export const allComment= (req, res)=>{
 }
 
 export const addcomments = (req, res ) =>{
-    
-            const comment= new Comment({
-                blodId: req.body.blodId,
-                name: req.body.name,
-                email: req.body.email,
-                content: req.body.content
+          
+         const id =req.params.id;
+        const blog= Blog.findOne({_id: id});
+        if(blog){
+            comment= new Comment({
+            blodId: id,
+            name: req.body.name,
+            email: req.body.email,
+            content: req.body.content
+        })
+        comment.save().then(result =>{
+         
+            res.json({
+                result
             })
-            comment.save().then(result =>{
-                console.log(result);
-                res.json({
-                    result
-                })
-            }).catch(err => {
-                console.log(err);
-            })
+        }).catch(err => {
+            console.log(err);
+        })}else{
+            res.send("no blog found");
+        }
+            
       
 }
 
