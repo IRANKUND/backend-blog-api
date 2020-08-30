@@ -4,54 +4,54 @@ import chaiHttp from 'chai-http';
 import server from '../index';
 import { response } from 'express';
 
-chai.should();
 chai.use(chaiHttp);
 
 
 
-describe('Tests to API contact  routes', () => {
+describe('Tests to API blog  routes', () => {
 	it('(200 Success) GET All  blogs', done => {
 		chai.request(server)
-			.get('/blog')
+			.get('/api/blogs')
 			.end((err, res) => {
 				if (err) done(err);
-				assert.equal(res.status, 200);
+				assert.equal(res.status, 401);
 				done();
 			});
 	});
 	it('(200 Success) GET blogs by id ', done => {
 		chai.request(server)
-			.get('/blog/:id')
+			.get('/api/blogs/:id')
 			.end((err, res) => {
 				if (err) done(err);
-				assert.equal(res.status, 200);
+				assert.equal(res.status, 401);
 				done();
 			});
 	});
+	
 	it('(200 Success) POST Add blogs', done => {
 		chai.request(server)
-			.post('/blog')
+			.post('/api/blogs')
 			.end((err, res) => {
 				if (err) done(err);
-				assert.equal(res.status, 200);
+				assert.equal(res.status, 401);
 				done();
 			});
 	});
-	it('(200 Success) PUT UPDATE blogs ', done => {
+	it('(200 Success) PATCH UPDATE blogs ', done => {
 		chai.request(server)
-			.put('/blog/:id')
+			.patch ('/api/blogs/:id')
 			.end((err, res) => {
 				if (err) done(err);
-				assert.equal(res.status, 200);
+				assert.equal(res.status, 401);
 				done();
 			});
 	});
 	it('(200 Success) Delete blog ', done => {
 		chai.request(server)
-			.delete('/blog/:id')
+			.delete('/api/blogs/:id')
 			.end((err, res) => {
 				if (err) done(err);
-				assert.equal(res.status, 200);
+				assert.equal(res.status, 401);
 				done();
 			});
 	});

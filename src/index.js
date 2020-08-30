@@ -4,6 +4,8 @@ require ('dotenv').config();
 import bodyparser, { json } from 'body-parser';
 import route from './routes/contacts.js';
 import auth from './midleware/authoruser';
+import postroute from './midleware/post';
+import blogRoute from './controller/blogcontroller';
 import jwt from 'jsonwebtoken';
 import mongo from 'mongoose';
 
@@ -11,7 +13,7 @@ import mongo from 'mongoose';
 
 
 const PORT=process.env.PORT || 4000;
-const SECRET_KEY=process.env.SECRET_KEY;
+
 const DB_CONNECT=process.env.DB_CONNECT;
 
 
@@ -20,13 +22,15 @@ const app= express();
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({ extended: true }));
 
-mongo.connect(DB_CONNECT, { useNewUrlParser: true, useUnifiedTopology: true } ,()=>{
+mongo.connect("mongodb+srv://patrick:123blog@blog-api.jg7ki.mongodb.net/blog-api?retryWrites=true&w=majority", { useNewUrlParser: true, useUnifiedTopology: true } ,()=>{
    
     console.log("connectedd to DB")
 });
 
 app.use('/', route);
 app.use('/', auth);
+app.use('/', postroute);
+app.use('/', blogRoute);
  
 app.get('/', (req,res )=>{
    
