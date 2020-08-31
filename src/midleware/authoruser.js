@@ -5,13 +5,7 @@ import bycrypt  from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 require ('dotenv').config();
 
-
-
-
 const SECRET_KEY=process.env.SECRET_KEY;
-
-
-
 
 const route=router();
 
@@ -47,7 +41,7 @@ route.post('/login', async (req ,res)=>{
         const validPassword= await bycrypt.compare(req.body.password, user.password);
         if(!validPassword) return res.status(400).send("password is wrong");
           const token=jwt.sign({_id: user._id}, SECRET_KEY);
-          res.header('auth-token', token).send(token);
+          res.send(token);
         res.send("loged in");
         
 })

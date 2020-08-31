@@ -6,6 +6,7 @@ import route from './routes/contacts.js';
 import auth from './midleware/authoruser';
 import postroute from './midleware/post';
 import blogRoute from './controller/blogcontroller';
+
 import jwt from 'jsonwebtoken';
 import mongo from 'mongoose';
 
@@ -31,6 +32,7 @@ app.use('/', route);
 app.use('/', auth);
 app.use('/', postroute);
 app.use('/', blogRoute);
+
  
 app.get('/', (req,res )=>{
    

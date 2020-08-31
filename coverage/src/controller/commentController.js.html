@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">16.28% </span>
+                <span class="strong">21.95% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>7/43</span>
+                <span class='fraction'>9/41</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/4</span>
+                <span class='fraction'>0/2</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">17.07% </span>
+                <span class="strong">23.08% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>7/41</span>
+                <span class='fraction'>9/39</span>
             </div>
         
             
@@ -147,12 +147,10 @@
 <a name='L88'></a><a href='#L88'>88</a>
 <a name='L89'></a><a href='#L89'>89</a>
 <a name='L90'></a><a href='#L90'>90</a>
-<a name='L91'></a><a href='#L91'>91</a>
-<a name='L92'></a><a href='#L92'>92</a>
-<a name='L93'></a><a href='#L93'>93</a>
-<a name='L94'></a><a href='#L94'>94</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L91'></a><a href='#L91'>91</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -170,9 +168,6 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -183,8 +178,6 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -235,6 +228,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -245,7 +239,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import Comment from '../models/comment';
 import Blog from '../models/blog';
-&nbsp;
+import verify from '../midleware/verifyToken';
+const User=  require ('../models/users');
 &nbsp;
 export const <span class="fstat-no" title="function not covered" >allComment=</span> (req, res)=&gt;{
 <span class="cstat-no" title="statement not covered" >    Comment.f</span>ind()
@@ -261,16 +256,13 @@ export const <span class="fstat-no" title="function not covered" >allComment=</s
 }
 &nbsp;
 export const <span class="fstat-no" title="function not covered" >addcomments </span>= (req, res ) =&gt;{
-          
-         const id =<span class="cstat-no" title="statement not covered" >req.params.id;</span>
-        const blog= <span class="cstat-no" title="statement not covered" >Blog.f</span>indOne({_id: id});
-<span class="cstat-no" title="statement not covered" >        if(blog){</span>
-<span class="cstat-no" title="statement not covered" >            comment=</span> new Comment({
-            blodId: id,
+&nbsp;
+       const  comment= <span class="cstat-no" title="statement not covered" >new C</span>omment({
+            blodId: req.body.blodId,
             name: req.body.name,
             email: req.body.email,
             content: req.body.content
-        })
+        });  
 <span class="cstat-no" title="statement not covered" >        comment.</span>save().then(<span class="fstat-no" title="function not covered" >result </span>=&gt;{
          
 <span class="cstat-no" title="statement not covered" >            res.</span>json({
@@ -278,9 +270,7 @@ export const <span class="fstat-no" title="function not covered" >addcomments </
             })
         }).catch(<span class="fstat-no" title="function not covered" >err </span>=&gt; {
 <span class="cstat-no" title="statement not covered" >            console.</span>log(err);
-        })}else{
-<span class="cstat-no" title="statement not covered" >            res.</span>send("no blog found");
-        }
+        })
             
       
 }
@@ -336,6 +326,7 @@ export const <span class="fstat-no" title="function not covered" >deletecomement
 &nbsp;
 &nbsp;
 &nbsp;
+&nbsp;
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -343,7 +334,7 @@ export const <span class="fstat-no" title="function not covered" >deletecomement
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Sun Aug 30 2020 18:52:49 GMT+0200 (Central Africa Time)
+                at Mon Aug 31 2020 09:34:02 GMT+0200 (Central Africa Time)
             </div>
         </div>
         <script src="../../prettify.js"></script>

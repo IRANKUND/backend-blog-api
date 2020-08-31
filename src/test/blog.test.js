@@ -11,11 +11,11 @@ chai.use(chaiHttp);
 describe('Tests to API blog  routes', () => {
 	it('(200 Success) GET All  blogs', done => {
 		chai.request(server)
-			.get('/api/blogs')
+			.get('/api/blogss')
 			.end((err, res) => {
 				if (err) done(err);
-				assert.equal(res.status, 401);
-				done();
+				assert.equal(res.status, 200);
+				done(); 
 			});
 	});
 	it('(200 Success) GET blogs by id ', done => {

@@ -22,7 +22,7 @@ route.delete('/users/:id',  deleteUser);
 //route.get('/blogs/:id', allBlogById);
 //route.delete('/blogs/:id', deleteBlog);
 route.get('/comments', allComment);
-route.post('/comments/id', addcomments);
+route.post('/comments', addcomments);
 route.patch('/comments/:id',modifyComment);
 route.get('/comments/:id',commentsById);
 route.delete('/comments/:id', deletecomement);
