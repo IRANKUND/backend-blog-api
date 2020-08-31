@@ -1,6 +1,7 @@
 import Comment from '../models/comment';
 import Blog from '../models/blog';
-
+import verify from '../midleware/verifyToken';
+const User=  require ('../models/users');
 
 export const allComment= (req, res)=>{
     Comment.find()
@@ -16,16 +17,13 @@ export const allComment= (req, res)=>{
 }
 
 export const addcomments = (req, res ) =>{
-          
-         const id =req.params.id;
-        const blog= Blog.findOne({_id: id});
-        if(blog){
-            comment= new Comment({
-            blodId: id,
+
+       const  comment= new Comment({
+            blodId: req.body.blodId,
             name: req.body.name,
             email: req.body.email,
             content: req.body.content
-        })
+        });  
         comment.save().then(result =>{
          
             res.json({
@@ -33,9 +31,7 @@ export const addcomments = (req, res ) =>{
             })
         }).catch(err => {
             console.log(err);
-        })}else{
-            res.send("no blog found");
-        }
+        })
             
       
 }
@@ -87,6 +83,7 @@ export const deletecomement= (req, res)=>{
         })
     })
 }
+
 
 
 

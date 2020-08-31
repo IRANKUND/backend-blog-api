@@ -1,7 +1,9 @@
 import express from 'express';
 import Blog from '../models/blog';
+import Message from  '../models/message';
 import verify from '../midleware/verifyToken';
 const User=  require ('../models/users');
+import {validateblog } from '../midleware/validation';
 import mongo from 'mongoose';
 
 
@@ -26,19 +28,45 @@ route.get('/api/blogs',  verify, async (req, res ) => {
     }
 });
 
+route.get('/api/contacts',  verify, async (req, res ) => {
+    
+    const user   = await User.findOne({_id: req.user});
+    const role = user.role;
+    if(role === "admin"){
+        Message.find()
+        .exec()
+        .then(doc =>{
+            res.status(200).json(doc);
+        }).catch(err =>{
+            res.status(500).json({
+                error: err
+            })
+        })}
+    else{
+        res.send('you are not admin');
+    }
+});
+
+
+
+
+
 
 route.post('/api/blogs',  verify, async (req, res ) => {
     
     const user   = await User.findOne({_id: req.user});
     const role = user.role;
-
-    const blog= new Blog({
-        author: user.name,
-        email: user.email,
-        title: req.body.title,
-        content: req.body.content
-    });
+    
+   
     if(role === "admin"){
+        const { error } = validateblog(req.body);
+        if(error) return res.status(400).send(error.details[0].message);
+        const blog= new Blog({
+            author: user.name,
+            email: user.email,
+            title: req.body.title,
+            content: req.body.content
+        });
         blog.save().then(result =>{
             
             res.json({
@@ -125,5 +153,22 @@ route.delete('/api/blogs/:id', verify, async (req, res ) => {
         res.send('you are not admin');
     }
 });
+route.delete('/api/contacts/:id', verify, async (req, res ) => {
+    const user   = await User.findOne({_id: req.user});
+    const role = user.role;
+    const id=req.params.id;
 
+    if(role === "admin"){
+        Message.remove({_id: id}).exec().then(result =>{
+            res.status(200).json(result);
+        }).catch(err =>{
+            console.log(err);
+            res.status(500).json({
+                error: err
+            })
+        
+    })}else{
+        res.send('you are not admin');
+    }
+});
 export default route;
