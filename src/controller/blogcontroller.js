@@ -9,9 +9,9 @@ import mongo from 'mongoose';
 
 const route = express();
 
-route.get('/api/blogs',  verify, async (req, res ) => {
+export const allBlogs= async (req, res ) => {
     
-    const user   = await User.findOne({_id: req.user});
+    const user   = await  User.findOne({_id: req.user});
     
     if(user){
     Blog.find()
@@ -26,33 +26,10 @@ route.get('/api/blogs',  verify, async (req, res ) => {
     else{
         res.send('access denied');
     }
-});
-
-route.get('/api/contacts',  verify, async (req, res ) => {
-    
-    const user   = await User.findOne({_id: req.user});
-    const role = user.role;
-    if(role === "admin"){
-        Message.find()
-        .exec()
-        .then(doc =>{
-            res.status(200).json(doc);
-        }).catch(err =>{
-            res.status(500).json({
-                error: err
-            })
-        })}
-    else{
-        res.send('you are not admin');
-    }
-});
+};
 
 
-
-
-
-
-route.post('/api/blogs',  verify, async (req, res ) => {
+ export const  addBlogs = async (req, res ) => {
     
     const user   = await User.findOne({_id: req.user});
     const role = user.role;
@@ -82,9 +59,9 @@ route.post('/api/blogs',  verify, async (req, res ) => {
     }
     
    
-})
+};
 
-route.patch('/api/blogs/:id',  verify, async (req, res ) => {
+export const  modifyBlog = async (req, res ) => {
     
     const user   = await User.findOne({_id: req.user});
     const role = user.role;
@@ -110,9 +87,9 @@ route.patch('/api/blogs/:id',  verify, async (req, res ) => {
 }else{
     res.send('you are not admin');
 }
-});
+};
 
-route.get('/api/blogs/:id', verify, async (req, res ) => {
+export const allBlogById= async (req, res ) => {
 
 
     const user   = await User.findOne({_id: req.user});
@@ -133,10 +110,10 @@ route.get('/api/blogs/:id', verify, async (req, res ) => {
     })}else{
       res.send("access denied");
     }
-});
+};
 
 
-route.delete('/api/blogs/:id', verify, async (req, res ) => {
+export const deleteBlog = async (req, res ) => {
     const user   = await User.findOne({_id: req.user});
     const role = user.role;
     const id=req.params.id;
@@ -152,7 +129,7 @@ route.delete('/api/blogs/:id', verify, async (req, res ) => {
     })}else{
         res.send('you are not admin');
     }
-});
+};
 route.delete('/api/contacts/:id', verify, async (req, res ) => {
     const user   = await User.findOne({_id: req.user});
     const role = user.role;
@@ -171,4 +148,25 @@ route.delete('/api/contacts/:id', verify, async (req, res ) => {
         res.send('you are not admin');
     }
 });
+
+
+route.get('/api/contacts',  verify, async (req, res ) => {
+    
+    const user   = await User.findOne({_id: req.user});
+    const role = user.role;
+    if(role === "admin"){
+        Message.find()
+        .exec()
+        .then(doc =>{
+            res.status(200).json(doc);
+        }).catch(err =>{
+            res.status(500).json({
+                error: err
+            })
+        })}
+    else{
+        res.send('you are not admin');
+    }
+});
+
 export default route;

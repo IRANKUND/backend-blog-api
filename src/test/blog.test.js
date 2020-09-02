@@ -20,7 +20,7 @@ describe('Tests to API blog  routes', () => {
 	});
 	it('(200 Success) GET blogs by id ', done => {
 		chai.request(server)
-			.get('/api/blogs/:id')
+			.get('/blogs/:id')
 			.end((err, res) => {
 				if (err) done(err);
 				assert.equal(res.status, 401);
@@ -30,7 +30,7 @@ describe('Tests to API blog  routes', () => {
 	
 	it('(200 Success) POST Add blogs', done => {
 		chai.request(server)
-			.post('/api/blogs')
+			.post('/blogs')
 			.end((err, res) => {
 				if (err) done(err);
 				assert.equal(res.status, 401);
@@ -39,7 +39,7 @@ describe('Tests to API blog  routes', () => {
 	});
 	it('(200 Success) PATCH UPDATE blogs ', done => {
 		chai.request(server)
-			.patch ('/api/blogs/:id')
+			.patch ('/blogs/:id')
 			.end((err, res) => {
 				if (err) done(err);
 				assert.equal(res.status, 401);
@@ -48,7 +48,7 @@ describe('Tests to API blog  routes', () => {
 	});
 	it('(200 Success) Delete blog ', done => {
 		chai.request(server)
-			.delete('/api/blogs/:id')
+			.delete('/blogs/:id')
 			.end((err, res) => {
 				if (err) done(err);
 				assert.equal(res.status, 401);

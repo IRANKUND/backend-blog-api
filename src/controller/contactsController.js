@@ -9,7 +9,6 @@ export const allContacts= (req, res)=>{
     Message.find()
     .exec()
     .then(doc =>{
-        console.log(doc);
         res.status(200).json(doc);
     }).catch(err =>{
         res.status(500).json({
@@ -26,7 +25,7 @@ export const addcontacts = (req, res ) =>{
         message:req.body.message
     })
     message.save().then(result =>{
-        console.log(result);
+        
         res.json({
             result
         })
@@ -40,7 +39,7 @@ export const addcontacts = (req, res ) =>{
 export const allContactsById= (req, res)=>{
     const id=req.params.id;
     Message.findById(id).exec().then(doc =>{
-        console.log('data from database',doc);
+       
         if(doc){
             res.status(200).json( doc);
         }else{

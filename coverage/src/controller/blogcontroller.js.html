@@ -37,9 +37,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">25% </span>
+                <span class="strong">21.21% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>7/28</span>
+                <span class='fraction'>7/33</span>
             </div>
         
             
@@ -228,9 +228,7 @@
 <a name='L169'></a><a href='#L169'>169</a>
 <a name='L170'></a><a href='#L170'>170</a>
 <a name='L171'></a><a href='#L171'>171</a>
-<a name='L172'></a><a href='#L172'>172</a>
-<a name='L173'></a><a href='#L173'>173</a>
-<a name='L174'></a><a href='#L174'>174</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L172'></a><a href='#L172'>172</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -257,29 +255,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -401,6 +376,27 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span></td><td class="text"><pre class="prettyprint lang-js">import express from 'express';
@@ -414,9 +410,9 @@ import mongo from 'mongoose';
 &nbsp;
 const route = express();
 &nbsp;
-route.get('/api/blogs',  verify, <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >async (r</span></span>eq, res ) =&gt; {
+export const <span class="fstat-no" title="function not covered" >allBlogs=</span> <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >async (r</span></span>eq, res ) =&gt; {
     
-    const <span class="cstat-no" title="statement not covered" >user   = await User.findOne({_id: req.user});</span>
+    const <span class="cstat-no" title="statement not covered" >user   = await  User.findOne({_id: req.user});</span>
     
 <span class="cstat-no" title="statement not covered" >    if(user){</span>
 <span class="cstat-no" title="statement not covered" >    Blog.f</span>ind()
@@ -431,33 +427,10 @@ route.get('/api/blogs',  verify, <span class="cstat-no" title="statement not cov
     else{
 <span class="cstat-no" title="statement not covered" >        res.</span>send('access denied');
     }
-});
-&nbsp;
-route.get('/api/contacts',  verify, <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >async (r</span></span>eq, res ) =&gt; {
-    
-    const <span class="cstat-no" title="statement not covered" >user   = await User.findOne({_id: req.user});</span>
-    const <span class="cstat-no" title="statement not covered" >role = user.role;</span>
-<span class="cstat-no" title="statement not covered" >    if(role === "admin"){</span>
-<span class="cstat-no" title="statement not covered" >        Message.f</span>ind()
-        .exec()
-        .then(<span class="fstat-no" title="function not covered" >doc </span>=&gt;{
-<span class="cstat-no" title="statement not covered" >            res.</span>status(200).json(doc);
-        }).catch(<span class="fstat-no" title="function not covered" >err </span>=&gt;{
-<span class="cstat-no" title="statement not covered" >            res.</span>status(500).json({
-                error: err
-            })
-        })}
-    else{
-<span class="cstat-no" title="statement not covered" >        res.</span>send('you are not admin');
-    }
-});
+};
 &nbsp;
 &nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-&nbsp;
-route.post('/api/blogs',  verify, <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >async (r</span></span>eq, res ) =&gt; {
+ export const  <span class="fstat-no" title="function not covered" >addBlogs </span>= <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >async (r</span></span>eq, res ) =&gt; {
     
     const <span class="cstat-no" title="statement not covered" >user   = await User.findOne({_id: req.user});</span>
     const <span class="cstat-no" title="statement not covered" >role = user.role;</span>
@@ -487,9 +460,9 @@ route.post('/api/blogs',  verify, <span class="cstat-no" title="statement not co
     }
     
    
-})
+};
 &nbsp;
-route.patch('/api/blogs/:id',  verify, <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >async (r</span></span>eq, res ) =&gt; {
+export const  <span class="fstat-no" title="function not covered" >modifyBlog </span>= <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >async (r</span></span>eq, res ) =&gt; {
     
     const <span class="cstat-no" title="statement not covered" >user   = await User.findOne({_id: req.user});</span>
     const <span class="cstat-no" title="statement not covered" >role = user.role;</span>
@@ -515,9 +488,9 @@ route.patch('/api/blogs/:id',  verify, <span class="cstat-no" title="statement n
 }else{
 <span class="cstat-no" title="statement not covered" >    res.</span>send('you are not admin');
 }
-});
+};
 &nbsp;
-route.get('/api/blogs/:id', verify, <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >async (r</span></span>eq, res ) =&gt; {
+export const <span class="fstat-no" title="function not covered" >allBlogById=</span> <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >async (r</span></span>eq, res ) =&gt; {
 &nbsp;
 &nbsp;
     const <span class="cstat-no" title="statement not covered" >user   = await User.findOne({_id: req.user});</span>
@@ -538,10 +511,10 @@ route.get('/api/blogs/:id', verify, <span class="cstat-no" title="statement not 
     })}else{
 <span class="cstat-no" title="statement not covered" >      res.</span>send("access denied");
     }
-});
+};
 &nbsp;
 &nbsp;
-route.delete('/api/blogs/:id', verify, <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >async (r</span></span>eq, res ) =&gt; {
+export const <span class="fstat-no" title="function not covered" >deleteBlog </span>= <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >async (r</span></span>eq, res ) =&gt; {
     const <span class="cstat-no" title="statement not covered" >user   = await User.findOne({_id: req.user});</span>
     const <span class="cstat-no" title="statement not covered" >role = user.role;</span>
     const <span class="cstat-no" title="statement not covered" >id=req.params.id;</span>
@@ -557,7 +530,7 @@ route.delete('/api/blogs/:id', verify, <span class="cstat-no" title="statement n
     })}else{
 <span class="cstat-no" title="statement not covered" >        res.</span>send('you are not admin');
     }
-});
+};
 route.delete('/api/contacts/:id', verify, <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >async (r</span></span>eq, res ) =&gt; {
     const <span class="cstat-no" title="statement not covered" >user   = await User.findOne({_id: req.user});</span>
     const <span class="cstat-no" title="statement not covered" >role = user.role;</span>
@@ -576,6 +549,27 @@ route.delete('/api/contacts/:id', verify, <span class="cstat-no" title="statemen
 <span class="cstat-no" title="statement not covered" >        res.</span>send('you are not admin');
     }
 });
+&nbsp;
+&nbsp;
+route.get('/api/contacts',  verify, <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >async (r</span></span>eq, res ) =&gt; {
+    
+    const <span class="cstat-no" title="statement not covered" >user   = await User.findOne({_id: req.user});</span>
+    const <span class="cstat-no" title="statement not covered" >role = user.role;</span>
+<span class="cstat-no" title="statement not covered" >    if(role === "admin"){</span>
+<span class="cstat-no" title="statement not covered" >        Message.f</span>ind()
+        .exec()
+        .then(<span class="fstat-no" title="function not covered" >doc </span>=&gt;{
+<span class="cstat-no" title="statement not covered" >            res.</span>status(200).json(doc);
+        }).catch(<span class="fstat-no" title="function not covered" >err </span>=&gt;{
+<span class="cstat-no" title="statement not covered" >            res.</span>status(500).json({
+                error: err
+            })
+        })}
+    else{
+<span class="cstat-no" title="statement not covered" >        res.</span>send('you are not admin');
+    }
+});
+&nbsp;
 export default route;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -583,7 +577,7 @@ export default route;</pre></td></tr></table></pre>
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank">istanbul</a>
-                at Mon Aug 31 2020 09:34:02 GMT+0200 (Central Africa Time)
+                at Wed Sep 02 2020 06:47:01 GMT+0200 (Central Africa Time)
             </div>
         </div>
         <script src="../../prettify.js"></script>
