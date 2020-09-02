@@ -3,5 +3,5 @@
 .env
 /src/test/dist
 /coverage
-/.nyc_output
+.nyc_output
 
